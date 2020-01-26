@@ -1,0 +1,54 @@
+# TidyUpManager CMake config file
+#
+# This file sets the following variables:
+# TidyUpManager_FOUND - Always TRUE.
+# TidyUpManager_INCLUDE_DIRS - Directories containing the TidyUpManager include files.
+# TidyUpManager_IDL_DIRS - Directories containing the TidyUpManager IDL files.
+# TidyUpManager_LIBRARIES - Libraries needed to use TidyUpManager.
+# TidyUpManager_DEFINITIONS - Compiler flags for TidyUpManager.
+# TidyUpManager_VERSION - The version of TidyUpManager found.
+# TidyUpManager_VERSION_MAJOR - The major version of TidyUpManager found.
+# TidyUpManager_VERSION_MINOR - The minor version of TidyUpManager found.
+# TidyUpManager_VERSION_REVISION - The revision version of TidyUpManager found.
+# TidyUpManager_VERSION_CANDIDATE - The candidate version of TidyUpManager found.
+
+message(STATUS "Found TidyUpManager-@PROJECT_VERSION@")
+set(TidyUpManager_FOUND TRUE)
+
+find_package(<dependency> REQUIRED)
+
+#set(TidyUpManager_INCLUDE_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@"
+#    ${<dependency>_INCLUDE_DIRS}
+#    )
+#
+#set(TidyUpManager_IDL_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@/idl")
+set(TidyUpManager_INCLUDE_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@"
+    ${<dependency>_INCLUDE_DIRS}
+    )
+set(TidyUpManager_IDL_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@/idl")
+
+
+if(WIN32)
+    set(TidyUpManager_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_STATIC_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+else(WIN32)
+    set(TidyUpManager_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_SHARED_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+endif(WIN32)
+
+set(TidyUpManager_DEFINITIONS ${<dependency>_DEFINITIONS})
+
+set(TidyUpManager_VERSION @PROJECT_VERSION@)
+set(TidyUpManager_VERSION_MAJOR @PROJECT_VERSION_MAJOR@)
+set(TidyUpManager_VERSION_MINOR @PROJECT_VERSION_MINOR@)
+set(TidyUpManager_VERSION_REVISION @PROJECT_VERSION_REVISION@)
+set(TidyUpManager_VERSION_CANDIDATE @PROJECT_VERSION_CANDIDATE@)
+
