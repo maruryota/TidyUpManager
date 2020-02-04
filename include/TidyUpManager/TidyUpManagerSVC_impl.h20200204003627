@@ -38,7 +38,8 @@ class ogata_TidyUpManagerSVC_impl
    virtual ~ogata_TidyUpManagerSVC_impl();
 
    // attributes and operations
-   ogata::RETURN_VALUE tidyup(const RTC::TimedPose2D& path, const RTC::TimedString& kind);
+   ogata::RETURN_VALUE tidyup(const RTC::Pose2D& path);
+
    /*!
    */
    RTC::CorbaConsumer<ogata::StringNavigationCommanderService> m_StringNavigationManagerService;
@@ -75,7 +76,7 @@ class ogata_StringNavigationCommanderServiceSVC_impl
    virtual ~ogata_StringNavigationCommanderServiceSVC_impl();
 
    // attributes and operations
-   ogata::RETURN_VALUE move(const RTC::TimedPose2D& path);
+   ogata::RETURN_VALUE move(const RTC::Pose2D& path);
 
 };
 
@@ -103,7 +104,7 @@ class ogata_PickerSVC_impl
    virtual ~ogata_PickerSVC_impl();
 
    // attributes and operations
-   ogata::RETURN_VALUE pick(const RTC::TimedString& kind);
+   ogata::RETURN_VALUE pick();
 
 };
 
@@ -131,7 +132,7 @@ class ogata_DroperSVC_impl
    virtual ~ogata_DroperSVC_impl();
 
    // attributes and operations
-   ogata::RETURN_VALUE drop(const RTC::TimedString& kind);
+   ogata::RETURN_VALUE drop();
 
 };
 

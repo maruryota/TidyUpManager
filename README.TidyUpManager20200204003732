@@ -10,8 +10,8 @@
 #   --module-desc='ModuleDescription' --module-version=1.0.0 --module-vendor=maruryota 
 #   --module-category=Category --module-comp-type=STATIC 
 #   --module-act-type=PERIODIC --module-max-inst=1 
-#   --service-idl=C:\idl\TidyUpManager.idl 
-#   --consumer-idl=C:\idl\TidyUpManager.idl --consumer-idl=C:\idl\TidyUpManager.idl --consumer-idl=C:\idl\TidyUpManager.idl 
+#   --service-idl=C:\Users\ogata\AppData\Roaming\.openrtp\idl\TidyUpManager.idl 
+#   --consumer-idl=C:\Users\ogata\AppData\Roaming\.openrtp\idl\TidyUpManager.idl --consumer-idl=C:\Users\ogata\AppData\Roaming\.openrtp\idl\TidyUpManager.idl --consumer-idl=C:\Users\ogata\AppData\Roaming\.openrtp\idl\TidyUpManager.idl 
 #   --service=tidyUpManager:tidyUpManager:ogata::TidyUpManager 
 #   --consumer=StringNavigationManagerService:StringNavigationManagerService:ogata::StringNavigationCommanderService 
 #   --consumer=Picker:Picker:ogata::Picker 
