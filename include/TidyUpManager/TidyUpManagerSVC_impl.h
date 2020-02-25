@@ -11,6 +11,11 @@
 #include "TidyUpManagerSkel.h"
 #include <rtm/CorbaPort.h>
 
+
+namespace ogata_lab {
+	class TidyUpManager;
+}
+
 #ifndef TIDYUPMANAGERSVC_IMPL_H
 #define TIDYUPMANAGERSVC_IMPL_H
  
@@ -39,16 +44,10 @@ class ogata_TidyUpManagerSVC_impl
 
    // attributes and operations
    ogata::RETURN_VALUE tidyup(const RTC::TimedPose2D& path, const RTC::TimedString& kind);
-   /*!
-   */
-   RTC::CorbaConsumer<ogata::StringNavigationCommanderService> m_StringNavigationManagerService;
-   /*!
-	*/
-   RTC::CorbaConsumer<ogata::Picker> m_Picker;
-   /*!
-	*/
-   RTC::CorbaConsumer<ogata::Droper> m_Droper;
 
+   ogata_lab::TidyUpManager* m_pRTC;
+
+   void setRTC(ogata_lab::TidyUpManager* pRTC) { m_pRTC = pRTC; }
 };
 
 /*!

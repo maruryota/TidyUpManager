@@ -9,6 +9,8 @@
 
 #include "TidyUpManager.h"
 
+using namespace ogata_lab;
+
 // Module specification
 // <rtc-template block="module_spec">
 static const char* tidyupmanager_spec[] =
@@ -77,6 +79,8 @@ RTC::ReturnCode_t TidyUpManager::onInitialize()
   
   // </rtc-template>
 
+  m_tidyUpManager.setRTC(this);
+
   // <rtc-template block="bind_config">
   // </rtc-template>
   
@@ -118,12 +122,27 @@ RTC::ReturnCode_t TidyUpManager::onDeactivated(RTC::UniqueId ec_id)
 }
 */
 
-/*
+
 RTC::ReturnCode_t TidyUpManager::onExecute(RTC::UniqueId ec_id)
 {
-  return RTC::RTC_OK;
+	
+	/*static int i;
+
+	if (i == 0) {
+		int len = m_StringNavigationManagerServicePort.getPortProfile().connector_profiles.length();
+		std::cout << "Length = " << len << std::endl;
+		RTC::TimedPose2D pose;
+		pose.data.position.x = 1.0;
+		pose.data.position.y = 1.0;
+		pose.data.heading= 1.0;
+		pose.tm.sec = 0;
+		pose.tm.nsec = 0;
+		m_StringNavigationManagerService->move(pose);
+	}
+
+	i++;*/
+	return RTC::RTC_OK;
 }
-*/
 
 /*
 RTC::ReturnCode_t TidyUpManager::onAborting(RTC::UniqueId ec_id)

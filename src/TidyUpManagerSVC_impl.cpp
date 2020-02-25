@@ -7,6 +7,8 @@
 
 #include "TidyUpManagerSVC_impl.h"
 
+#include "TidyUpManager.h"
+
 /*
  * Example implementational code for IDL interface ogata::TidyUpManager
  */
@@ -29,18 +31,33 @@ ogata::RETURN_VALUE ogata_TidyUpManagerSVC_impl::tidyup(const RTC::TimedPose2D& 
 {
   // Please insert your code here and remove the following warning pragma
 #ifndef WIN32
-  #warning "Code missing in function <ogata::RETURN_VALUE ogata_TidyUpManagerSVC_impl::tidyup(const RTC::TimedPose2D& path, const RTC::TimedString& kind)>"
+	#warning "Code missing in function <ogata::RETURN_VALUE ogata_TidyUpManagerSVC_impl::tidyup(const RTC::TimedPose2D& path, const RTC::TimedString& kind)>"
 #endif
-	  ogata::RETURN_VALUE retval = m_StringNavigationManagerService->move(path);
+	std::cout << "start move" << std::endl;
+	ogata::RETURN_VALUE retval = m_pRTC->move(path);
+
+	while (m_pRTC->is_moving()) {
+		coil::usleep(100 * 1000);
+	  }
+
+	  
+
+	  //ogata::RETURN_VALUE retval = m_StringNavigationManagerService->move(path);
 	  if (retval == ogata::RETURN_VALUE::RETVAL_OK) {
 		  std::cout << "following is done" << std::endl;
-		  retval = m_Picker->pick(kind);
+
+		  ogata::RETURN_VALUE retval = m_pRTC->pick(kind);
+		  std::cout << "return status" << std::endl;
+
+		  while (m_pRTC->is_moving()) {
+			  coil::usleep(100 * 1000);
+		  }
 
 		  if (retval == ogata::RETURN_VALUE::RETVAL_OK) {
 			  std::cout << "picking is done" << std::endl;
-			  retval = m_Droper->drop(kind);
+			  //retval = m_Droper->drop(kind);
 
-			  if (retval == ogata::RETURN_VALUE::RETVAL_OK) {
+			  /*if (retval == ogata::RETURN_VALUE::RETVAL_OK) {
 				  std::cout << "dropping is done" << std::endl;
 				  std::cout << "tidying up finished" << std::endl;
 
@@ -49,7 +66,7 @@ ogata::RETURN_VALUE ogata_TidyUpManagerSVC_impl::tidyup(const RTC::TimedPose2D& 
 			  else {
 				  std::cout << "dropping is failed:" << retval << std::endl;
 				  return ogata::RETURN_VALUE::RETVAL_UNKNOWN_ERROR;
-			  }
+			  }*/
 		  }
 		  else {
 			  std::cout << "picking is failed:" << retval << std::endl;
